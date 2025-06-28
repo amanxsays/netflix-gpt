@@ -21,7 +21,7 @@ const Login = () => {
       {/* bg */}
       <div className='h-screen w-screen overflow-hidden'>
         <div className='bg-black opacity-50 absolute w-full h-full'></div>
-        <img src='https://assets.nflxext.com/ffe/siteui/vlv3/75b0ed49-75ab-4a63-bd45-37bc2c95cb73/web/IN-en-20250623-TRIFECTA-perspective_ae5833b7-6ce5-4e88-853e-014f38c506f1_small.jpg'></img>
+        <img alt='l' src='https://assets.nflxext.com/ffe/siteui/vlv3/75b0ed49-75ab-4a63-bd45-37bc2c95cb73/web/IN-en-20250623-TRIFECTA-perspective_ae5833b7-6ce5-4e88-853e-014f38c506f1_small.jpg'></img>
       </div>
 
       {/* header and login page */}
