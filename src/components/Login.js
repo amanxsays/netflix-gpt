@@ -26,7 +26,7 @@ const Login = () => {
 
       {/* header and login page */}
       <Header/>
-      <div className='h-[85vh] w-[70vh] top-20 left-[0.70vh] absolute bg-[#000000d3]'>
+      <div className='h-[85vh] w-[70vh] top-20 left-[0.70vh] absolute bg-[#b03535d3]'>
         <h1 className='text-white text-3xl font-bold mt-16 mx-10 mb-7'>{isSignInPage?'Sign In':'Sign up' }</h1>
         <form className="mx-2" onSubmit={(e)=>e.preventDefault()}>
           {!isSignInPage && <div tabIndex={0} className='group w-10/12 relative h-14 mx-8 my-4 bg-[#212121cc] border border-neutral-600 rounded-md focus-within:border-white focus-within:border-2'>
