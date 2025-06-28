@@ -1,7 +1,21 @@
-import React from 'react'
 import Header from './Header'
+import { checkValidData } from '../utils/validate';
+import React, { useRef, useState } from 'react'
 
 const Login = () => {
+  const [isSignInPage,setIsSignInPage]=useState(true);
+  const [error,setError]=useState([true,true]);
+  const email=useRef(null);
+  const password=useRef(null);
+
+  const handleSubmit=()=>{
+    setError(checkValidData(email.current.value,password.current.value));
+  }
+
+  const handleToggle=()=>{
+    setIsSignInPage(!isSignInPage);
+  }
+
   return (
     <div>
       {/* bg */}
@@ -13,19 +27,26 @@ const Login = () => {
       {/* header and login page */}
       <Header/>
       <div className='h-[85vh] w-[70vh] top-20 left-[0.70vh] absolute bg-[#000000d3]'>
-        <form className="mx-2 mt-20">
-          <div tabIndex={0} className='group w-10/12 relative h-14 mx-8 my-2 bg-[#212121cc] border border-neutral-600 rounded-md focus-within:border-white'>
+        <h1 className='text-white text-3xl font-bold mt-16 mx-10 mb-7'>{isSignInPage?'Sign In':'Sign up' }</h1>
+        <form className="mx-2" onSubmit={(e)=>e.preventDefault()}>
+          {!isSignInPage && <div tabIndex={0} className='group w-10/12 relative h-14 mx-8 my-4 bg-[#212121cc] border border-neutral-600 rounded-md focus-within:border-white focus-within:border-2'>
+            <div className='absolute text-[#959292c5] opacity-0 group-hover: p-1 group-hover:opacity-100 group-hover:text-xs'>Enter your full name</div>
+            <input className='absolute w-full h-full pl-3 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300 ' placeholder='Enter your full name'></input>
+          </div>}
+          <div tabIndex={0} className={`group w-10/12 relative h-14 mx-8 my-3 bg-[#212121cc] border ${!error[0]?'border-red-600 mb-1':'border-neutral-600'} rounded-md focus-within:border-white focus-within:border-2`}>
             <div className='absolute text-[#959292c5] opacity-0 group-hover: p-1 group-hover:opacity-100 group-hover:text-xs'>Email or mobile number</div>
-            <input className='absolute w-full h-full pl-3 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300 ' placeholder='Email or phone number'></input>
+            <input ref={email} className='absolute w-full h-full pl-3 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300 ' placeholder='Email or phone number'></input>
           </div>
-          <div tabIndex={0} className='group w-10/12 relative h-14 mx-8 my-2 bg-[#212121cc] border border-neutral-600 rounded-md focus-within:border-white'>
+          {!error[0] && <p className='text-red-600 text-sm ml-10 mb-1 font-medium'>⊗ Please enter a valid email or phone number.</p>}
+          <div tabIndex={0} className={`group w-10/12 relative h-14 mx-8 my-3 bg-[#212121cc] border ${!error[1]?'border-red-600 mb-1':'border-neutral-600'} rounded-md focus-within:border-white focus-within:border-2`}>
             <div className='absolute text-[#959292c5] opacity-0 group-hover: p-1 group-hover:opacity-100 group-hover:text-xs'>Password</div>
-            <input className='absolute w-full h-full pl-3 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300' placeholder='Password'></input>
+            <input ref={password} type='password' className='absolute w-full h-full pl-3 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300' placeholder='Password'></input>
           </div>
-          <button></button>
+          {!error[1] && <p className='text-red-600 text-sm ml-10 mb-1 font-medium'>⊗ Please enter a valid password.</p>} 
+          <button className='bg-red-600 text-white w-10/12 mx-8 my-2 h-10 rounded-md font-medium' onClick={handleSubmit}>{isSignInPage?'Sign In':'Sign up'}</button>
+          <div className='text-zinc-500 mt-4 ml-10 font-medium flex gap-1'>{isSignInPage?'Already registered?':'New to Netflix?' }<p className='text-white font-medium cursor-pointer' onClick={handleToggle}>{isSignInPage?'Sign In now.':'Sign up now.' }</p></div>
         </form>
       </div>
-      
     </div>
   )
 }
