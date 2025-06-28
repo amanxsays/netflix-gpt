@@ -1,20 +1,59 @@
 import Header from './Header'
 import { checkValidData } from '../utils/validate';
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth';
+import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isSignInPage,setIsSignInPage]=useState(true);
   const [error,setError]=useState([true,true]);
+  const [customError,setCustomError]=useState(null);
+  const navigate=useNavigate();
+
+  const name=useRef(null);
   const email=useRef(null);
   const password=useRef(null);
 
   const handleSubmit=()=>{
     setError(checkValidData(email.current.value,password.current.value));
+    if(!error[0] || !error[1]) return;
+  
+    if(!isSignInPage){
+      createUserWithEmailAndPassword( auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        navigate('/browse');
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setCustomError(errorCode+' '+errorMessage);
+        // ..
+      });
+    }
+    else{
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        navigate('/browse')
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setCustomError(errorCode+' '+errorMessage);
+      });
+    }
   }
 
   const handleToggle=()=>{
     setIsSignInPage(!isSignInPage);
   }
+
 
   return (
     <div>
@@ -31,7 +70,7 @@ const Login = () => {
         <form className="mx-2" onSubmit={(e)=>e.preventDefault()}>
           {!isSignInPage && <div tabIndex={0} className='group w-10/12 relative h-14 mx-8 my-4 bg-[#212121cc] border border-neutral-600 rounded-md focus-within:border-white focus-within:border-2'>
             <div className='absolute text-[#959292c5] opacity-0 group-hover: p-1 group-hover:opacity-100 group-hover:text-xs'>Enter your full name</div>
-            <input className='absolute w-full h-full pl-3 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300 ' placeholder='Enter your full name'></input>
+            <input ref={name} className='absolute w-full h-full pl-3 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300 ' placeholder='Enter your full name'></input>
           </div>}
           <div tabIndex={0} className={`group w-10/12 relative h-14 mx-8 my-3 bg-[#212121cc] border ${!error[0]?'border-red-600 mb-1':'border-neutral-600'} rounded-md focus-within:border-white focus-within:border-2`}>
             <div className='absolute text-[#959292c5] opacity-0 group-hover: p-1 group-hover:opacity-100 group-hover:text-xs'>Email or mobile number</div>
@@ -43,8 +82,9 @@ const Login = () => {
             <input ref={password} type='password' className='absolute w-full h-full pl-3 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300' placeholder='Password'></input>
           </div>
           {!error[1] && <p className='text-red-600 text-sm ml-10 mb-1 font-medium'>⊗ Please enter a valid password.</p>} 
+          {customError!=null && <p className='text-red-600 text-sm ml-10 mb-1 font-medium'>⊗{customError}</p>} 
           <button className='bg-red-600 text-white w-10/12 mx-8 my-2 h-10 rounded-md font-medium' onClick={handleSubmit}>{isSignInPage?'Sign In':'Sign up'}</button>
-          <div className='text-zinc-500 mt-4 ml-10 font-medium flex gap-1'>{isSignInPage?'Already registered?':'New to Netflix?' }<p className='text-white font-medium cursor-pointer' onClick={handleToggle}>{isSignInPage?'Sign In now.':'Sign up now.' }</p></div>
+          <div className='text-zinc-500 mt-4 ml-10 font-medium flex gap-1'>{!isSignInPage?'Already registered?':'New to Netflix?' }<p className='text-white font-medium cursor-pointer' onClick={handleToggle}>{!isSignInPage?'Sign In now.':'Sign up now.' }</p></div>
         </form>
       </div>
     </div>
