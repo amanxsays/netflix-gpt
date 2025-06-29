@@ -1,16 +1,13 @@
-import Header from './Header'
 import { checkValidData } from '../utils/validate';
 import { useRef, useState } from 'react'
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import { updateProfile } from 'firebase/auth';
 
 const Login = () => {
   const [isSignInPage,setIsSignInPage]=useState(true);
   const [error,setError]=useState([true,true]);
   const [customError,setCustomError]=useState(null);
-  const navigate=useNavigate();
 
   const name=useRef(null);
   const email=useRef(null);
@@ -28,7 +25,6 @@ const Login = () => {
           displayName: name.current.value, photoURL: `https://api.dicebear.com/9.x/fun-emoji/svg?seed=${name.current.value}`
           }).then(() => {
             // Profile updated!
-            navigate('/browse');
           }).catch((error) => {
             // An error occurred
           });
@@ -45,7 +41,6 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        navigate('/browse')
         // ...
       })
       .catch((error) => {
