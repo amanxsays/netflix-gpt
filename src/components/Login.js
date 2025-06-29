@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
+import { updateProfile } from 'firebase/auth';
 
 const Login = () => {
   const [isSignInPage,setIsSignInPage]=useState(true);
@@ -23,9 +24,14 @@ const Login = () => {
       createUserWithEmailAndPassword( auth, email.current.value, password.current.value)
       .then((userCredential) => {
         // Signed up 
-        const user = userCredential.user;
-        navigate('/browse');
-        // ...
+        updateProfile(auth.currentUser, {
+          displayName: name.current.value, photoURL: `https://api.dicebear.com/9.x/fun-emoji/svg?seed=${name.current.value}`
+          }).then(() => {
+            // Profile updated!
+            navigate('/browse');
+          }).catch((error) => {
+            // An error occurred
+          });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -64,7 +70,9 @@ const Login = () => {
       </div>
 
       {/* header and login page */}
-      <Header/>
+      <div className='absolute z-10 left-32 top-1'>
+        <img alt='photo' className='h-20' src='https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png'></img>
+      </div>
       <div className='h-[85vh] w-[70vh] top-20 left-[0.70vh] absolute bg-[#000000d3]'>
         <h1 className='text-white text-3xl font-bold mt-16 mx-10 mb-7'>{isSignInPage?'Sign In':'Sign up' }</h1>
         <form className="mx-2" onSubmit={(e)=>e.preventDefault()}>
