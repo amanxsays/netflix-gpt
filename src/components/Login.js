@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import { updateProfile } from 'firebase/auth';
+import { NETFLIX_BG, NETFLIX_LOGO, RANDOM_IMG } from '../utils/constants';
 
 const Login = () => {
   const [isSignInPage,setIsSignInPage]=useState(true);
@@ -22,7 +23,7 @@ const Login = () => {
       .then((userCredential) => {
         // Signed up 
         updateProfile(auth.currentUser, {
-          displayName: name.current.value, photoURL: `https://api.dicebear.com/9.x/fun-emoji/svg?seed=${name.current.value}`
+          displayName: name.current.value, photoURL: RANDOM_IMG+name.current.value
           }).then(() => {
             // Profile updated!
           }).catch((error) => {
@@ -40,7 +41,6 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
         // ...
       })
       .catch((error) => {
@@ -61,12 +61,12 @@ const Login = () => {
       {/* bg */}
       <div className='h-screen w-screen overflow-hidden'>
         <div className='bg-black opacity-50 absolute w-full h-full'></div>
-        <img alt='h' src='https://assets.nflxext.com/ffe/siteui/vlv3/75b0ed49-75ab-4a63-bd45-37bc2c95cb73/web/IN-en-20250623-TRIFECTA-perspective_ae5833b7-6ce5-4e88-853e-014f38c506f1_small.jpg'></img>
+        <img alt='h' src={NETFLIX_BG}></img>
       </div>
 
       {/* header and login page */}
       <div className='absolute z-10 left-32 top-1'>
-        <img alt='photo' className='h-20' src='https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png'></img>
+        <img alt='phot' className='h-20' src={NETFLIX_LOGO}></img>
       </div>
       <div className='h-[85vh] w-[70vh] top-20 left-[0.70vh] absolute bg-[#000000d3]'>
         <h1 className='text-white text-3xl font-bold mt-16 mx-10 mb-7'>{isSignInPage?'Sign In':'Sign up' }</h1>
