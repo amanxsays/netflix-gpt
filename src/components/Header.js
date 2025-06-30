@@ -21,7 +21,7 @@ const Header = () => {
   }
 
   return (
-    <div className='flex fixed h-48 bg-gradient-to-b from-black p-2 w-full z-10'>
+    <div className='flex fixed top-0 h-48 bg-gradient-to-b from-black p-2 w-full z-10'>
       <div className=''>
         <img alt='phot' className='h-16' src={NETFLIX_LOGO}></img>
       </div>

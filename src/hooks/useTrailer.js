@@ -5,8 +5,6 @@ import { addTrailer } from "../utils/movieSlice";
 
 const useTrailer=(imdb_id)=>{
     const dispatch=useDispatch();
-    // const movie=useSelector((store)=> store.movies?.nowPlayingMovies);
-
     useEffect(()=>{
         getTrailer();
     },[])
