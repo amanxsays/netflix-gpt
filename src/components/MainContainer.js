@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 const MainContainer = () => {
   const movies=useSelector((store)=> store.movies?.popularMovies)
   
-  if(!movies) return;
+  if(!movies) return <div className='w-screen h-screen bg-black absolute'></div>;
 
   const trailer=movies[0];
   
