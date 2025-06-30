@@ -11,12 +11,19 @@ const useNowPlayingMovies = () => {
   },[]);
 
   const getNowPlayingMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?&page=1",
+    const data1 = await fetch(
+      'https://api.trakt.tv/movies/popular',
       API_OPTIONS
     );
-    const json = await data.json();
-    dispatch(addNowPlayingMovies(json?.results))
+    const data2= await fetch(
+      'https://api.trakt.tv/movies/boxoffice',
+      API_OPTIONS
+    )
+    const json1 = await data1.json();
+    const json2 = await data2.json();
+    const json=[...json1];
+    json2.map((elt)=> json.push(elt.movie))
+    dispatch(addNowPlayingMovies(json))
   };
 };
 
