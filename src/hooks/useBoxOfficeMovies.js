@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addBoxOfficeMovies } from "../utils/movieSlice";
 
 const useBoxOfficeMovies = () => {
   const dispatch=useDispatch();
+  const selector=useSelector(store => store.movies.boxOfficsMovies)
 
   useEffect(() => {
-    getMovies();
+    !selector && getMovies();
   },[]);
 
   const getMovies = async () => {

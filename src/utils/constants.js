@@ -3,6 +3,8 @@ export const NETFLIX_BG='https://assets.nflxext.com/ffe/siteui/vlv3/75b0ed49-75a
 export const RANDOM_IMG='https://api.dicebear.com/9.x/fun-emoji/svg?seed='
 
 export const omdb_api_key='3a029bec';
+export const OPENROUTER_API_KEY='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';
+export const GENAI_API_KEY='AIzaSyAAKEbbfmICtXw5f0r_xNkjAntxX3w5O2M';
 
 
 const Client_Id='80ebc3ce49f822efae87ee73e2662186b93355eccf825521479b7167485409fb'
