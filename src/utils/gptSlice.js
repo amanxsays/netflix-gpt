@@ -4,7 +4,7 @@ const gptSlice=createSlice({
     name:'gpt',
     initialState:{
         showGptPage:false,
-        gptMovies:[],
+        gptMovies:null,
     },
     reducers:{
         toggleGptPage:(state)=>{

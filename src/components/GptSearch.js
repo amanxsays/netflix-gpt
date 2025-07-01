@@ -1,14 +1,17 @@
 import { useRef } from "react";
 import { GoogleGenAI } from "@google/genai";
 import { GENAI_API_KEY } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addGptMovies, refreshGptMovies } from "../utils/gptSlice";
+import { SiGrafana } from "react-icons/si";
+import GptMovies from "./GptMovies";
 
 const GptSearch = () => {
   const dispatch=useDispatch();
   const searchFor = useRef(null);
   const description ="Act as a Movie suggestion ai tool and only give me the imdb id of 20 movies or series which are also available on omdb site and should be very common and based on the idea given as and in format: name,name,name,.. and";
   const ai = new GoogleGenAI({ apiKey: GENAI_API_KEY });
+  const gptMoviesLoaded=useSelector(store => store.gpt.gptMovies)
 
   const handleSearch = async () => {
     dispatch(refreshGptMovies());
@@ -40,6 +43,7 @@ const GptSearch = () => {
           Search
         </button>
       </form>
+      {(gptMoviesLoaded && gptMoviesLoaded.length==0) ? <span className="absolute left-[100vh] -z-10 mt-10 inline-block animate-[spin_3s_linear_infinite]"><SiGrafana className="scale-[800%] "/></span> : <GptMovies/>}
     </div>
   );
 };
