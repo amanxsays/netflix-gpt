@@ -16,7 +16,7 @@ const GptSearch = () => {
   const handleSearch = async () => {
     dispatch(refreshGptMovies());
     const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-2.5-flash-lite-preview-06-17",
         contents: description+"idea is:" + searchFor.current.value,
     });
     dispatch(addGptMovies(response.text.split(",")));
@@ -25,25 +25,25 @@ const GptSearch = () => {
   return (
     <div>
       <form
-        className="flex justify-center mx-[50vh] mb-[10vh] bg-[#000000de] h-[20vh] py-10 px-4 gap-4 rounded-md"
+        className="flex md:text-base text-sm justify-center md:mx-[50vh] mx-2 md:mb-[10vh] bg-[#000000de] md:h-[20vh] md:py-10 md:px-4 p-2 md:gap-4 gap-2 rounded-md"
         onSubmit={(e) => {
           e.preventDefault();
           handleSearch();
         }}
       >
         <input
-          className="w-10/12 rounded-sm bg-[#212121] text-white p-2 placeholder:text-[#706f6f] hover:opacity-70"
+          className="w-10/12 rounded-sm bg-[#212121] text-white md:p-2 p-1 placeholder:text-[#706f6f] hover:opacity-70"
           placeholder="What's in your mind today ?"
           ref={searchFor}
         ></input>
         <button
-          className="w-2/12 bg-red-600 rounded-sm font-medium text-lg hover:opacity-70"
+          className="w-2/12 bg-red-600 rounded-sm font-medium md:text-lg hover:opacity-70"
           onClick={() => handleSearch()}
         >
           Search
         </button>
       </form>
-      {(gptMoviesLoaded && gptMoviesLoaded.length==0) ? <span className="absolute left-[100vh] -z-10 mt-10 inline-block animate-[spin_3s_linear_infinite]"><SiGrafana className="scale-[800%] "/></span> : <GptMovies/>}
+      {(gptMoviesLoaded && gptMoviesLoaded.length==0) ? <span className="absolute md:left-[100vh] left-[25vh] -z-10 md:mt-10 mt-20 inline-block animate-[spin_3s_linear_infinite]"><SiGrafana className="md:scale-[800%] scale-[200%]"/></span> : <GptMovies/>}
     </div>
   );
 };

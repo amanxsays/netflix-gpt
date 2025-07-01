@@ -15,7 +15,7 @@ const SecondaryContainer = () => {
 
 
   return (
-    <div className="text-white top-[-20vh] px-4 pt-4 mt-2 relative w-full">
+    <div className="text-white md:font-base text-sm md:top-[-20vh] top-[-32vh] px-4 pt-4 mt-2 relative w-full">
       <MovieList title={'Popular'} movieList={selector.popularMovies}/>
       <MovieList title={'Trendings'} movieList={selector.trendingMovies}/>
       <MovieList title={'Box Office'} movieList={selector.boxOfficeMovies}/>

@@ -10,7 +10,7 @@ const MainContainer = () => {
   const trailer=movies[0];
   
   return (
-    <div className='w-full h-[100vh] relative'>
+    <div className='w-full md:h-[100vh] h-[50vh] relative'>
     <div>
         <VideoBackground imdb_id={trailer?.ids?.imdb}/>
         <VideoTitle imdb_id={trailer?.ids?.imdb}/>

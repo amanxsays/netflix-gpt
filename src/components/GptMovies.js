@@ -7,7 +7,7 @@ const GptMovies = () => {
   if(!gptMovies) return;
   return (
     <div>
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center md:mt-0 mt-2">
         {gptMovies.map((imdb)=> <MovieCard key={imdb} imdb={imdb}/>)}
       </div>
     </div>

@@ -8,7 +8,7 @@ const VideoBackground = ({imdb_id}) => {
   return (
     <div >
       <iframe
-        className="aspect-video absolute top-[-9vh]"
+        className="aspect-video absolute md:top-[-9vh]"
         src={"https://www.youtube.com/embed/"+key+"?autoplay=1&mute=1"}
         title="YouTube video player"
         allow="autoplay"
