@@ -68,7 +68,7 @@ const Login = () => {
       <div className='absolute z-10 left-32 top-1'>
         <img alt='phot' className='h-20' src={NETFLIX_LOGO}></img>
       </div>
-      <div className='h-[85vh] w-[70vh] top-20 left-[0.70vh] absolute bg-[#000000d3]'>
+      <div className='h-[85vh] w-[70vh] top-20 left-[70vh] absolute bg-[#000000d3]'>
         <h1 className='text-white text-3xl font-bold mt-16 mx-10 mb-7'>{isSignInPage?'Sign In':'Sign up' }</h1>
         <form className="mx-2" onSubmit={(e)=>e.preventDefault()}>
           {!isSignInPage && <div tabIndex={0} className='group w-10/12 relative h-14 mx-8 my-4 bg-[#212121cc] border border-neutral-600 rounded-md focus-within:border-white focus-within:border-2'>
