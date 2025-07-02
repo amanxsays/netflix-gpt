@@ -2,12 +2,11 @@ export const NETFLIX_LOGO='https://help.nflxext.com/helpcenter/OneTrust/oneTrust
 export const NETFLIX_BG='https://assets.nflxext.com/ffe/siteui/vlv3/75b0ed49-75ab-4a63-bd45-37bc2c95cb73/web/IN-en-20250623-TRIFECTA-perspective_ae5833b7-6ce5-4e88-853e-014f38c506f1_small.jpg';
 export const RANDOM_IMG='https://api.dicebear.com/9.x/fun-emoji/svg?seed='
 
-export const omdb_api_key='3a029bec';
-export const OPENROUTER_API_KEY='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';
-export const GENAI_API_KEY='AIzaSyAAKEbbfmICtXw5f0r_xNkjAntxX3w5O2M';
+export const omdb_api_key=process.env.REACT_APP_omdb_api_key;
+export const GENAI_API_KEY=process.env.REACT_APP_GENAI_API_KEY;
+const Client_Id=process.env.REACT_APP_Client_Id
 
 
-const Client_Id='80ebc3ce49f822efae87ee73e2662186b93355eccf825521479b7167485409fb'
 export const API_OPTIONS={
   method: 'GET',
   headers: {
@@ -16,3 +15,5 @@ export const API_OPTIONS={
     'trakt-api-key': Client_Id // Replace with your actual Trakt client ID
   }
 };
+
+// OPENROUTER_API_KEY='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';
