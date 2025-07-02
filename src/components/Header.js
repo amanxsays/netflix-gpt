@@ -4,7 +4,7 @@ import { signOut } from "firebase/auth";
 import { removeUser } from "../utils/userSlice";
 import { useState } from "react";
 import { SiOpenai } from "react-icons/si";
-import { NETFLIX_LOGO } from "../utils/constants";
+import { NETFLIX_LOGO, RANDOM_IMG } from "../utils/constants";
 import {toggleGptPage} from '../utils/gptSlice'
 import { FaHome } from "react-icons/fa";
 
@@ -45,7 +45,7 @@ const Header = () => {
       <div className="md:flex md:gap-2 absolute right-2 top-4">
         <img
           alt="_"
-          src={selector?.photoURL}
+          src={selector?.photoURL || RANDOM_IMG+'User'}
           className="rounded-md ml-[35%] md:ml-0 h-5 md:h-10 md:w-10 hover:scale-105"
         ></img>
         <div>
@@ -57,7 +57,7 @@ const Header = () => {
               setShowBtn(!showBtn);
             }}
           >
-            {selector?.displayName} {showBtn ? "▴" : "▾"}{" "}
+            {selector?.displayName || 'User'} {showBtn ? "▴" : "▾"}{" "}
           </button>
           {showBtn && (
             <button
