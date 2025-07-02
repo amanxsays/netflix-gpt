@@ -16,7 +16,7 @@ const GptSearch = () => {
   const handleSearch = async () => {
     dispatch(refreshGptMovies());
     const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash-lite-preview-06-17",
+        model: "gemini-2.5-flash",
         contents: description+"idea is:" + searchFor.current.value,
     });
     dispatch(addGptMovies(response.text.split(",")));
