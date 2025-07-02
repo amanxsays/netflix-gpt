@@ -70,7 +70,7 @@ const Login = () => {
       </div>
       <div className='md:h-[85vh] md:w-[70vh] w-[38vh] h-[50vh] top-20 md:left-[70vh] left-[10vh] absolute bg-[#000000d3]'>
         <h1 className='text-white md:text-3xl font-bold md:mt-16 mt-10 md:mx-10 md:mb-7 mx-5 mb-5'>{isSignInPage?'Sign In':'Sign up' }</h1>
-        <form className="md:ml-2 md:mx-1 mx-3 md:text-base text-sm" onSubmit={(e)=>e.preventDefault()}>
+        <form className="md:ml-2 md:mx-1 mx-3 md:text-base text-sm" onSubmit={(e)=>{e.preventDefault(); return handleSubmit()}}>
           {!isSignInPage && <div tabIndex={0} className='group w-10/12 relative h-10 mx-5 md:h-14 md:mx-8 md:my-4 my-2 bg-[#212121cc] border border-neutral-600 rounded-md focus-within:border-white md:focus-within:border-2'>
             <div className='absolute text-[#959292c5] opacity-0 md:group-hover:p-1 group-hover:px-[4px] group-hover:opacity-100 md:group-hover:text-xs group-hover:text-[8px]'>Enter your full name</div>
             <input ref={name} className='absolute w-full h-full md:pl-3 pl-2 bg-transparent outline-none caret-white text-white group-hover:placeholder-opacity-0  placeholder-zinc-300 ' placeholder='Enter your full name'></input>

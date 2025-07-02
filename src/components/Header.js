@@ -32,8 +32,8 @@ const Header = () => {
 
   return (
     <div className="flex fixed top-0 h-[10vh] md:h-[22vh] bg-gradient-to-b from-black p-2 w-screen md:w-full z-20">
-      <div className="">
-        <img alt="phot" className="h-8 md:h-16 " src={NETFLIX_LOGO}></img>
+      <div className="cursor-pointer" onClick={()=>showGpt?handleToggle():''}>
+        <img alt="phot" className="h-8 md:h-16 hover:scale-105" src={NETFLIX_LOGO}></img>
       </div>
       <div>
         <button onClick={handleToggle} className="relative top-1.5 md:top-2 left-[30vh] md:left-[144vh] inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-600 to-black group-hover:from-red-600 group-hover:to-black hover:text-white dark:text-white  focus:outline-none dark:focus:ring-red">
@@ -46,11 +46,11 @@ const Header = () => {
         <img
           alt="_"
           src={selector?.photoURL}
-          className="rounded-md ml-[35%] md:ml-0 h-5 md:h-10 md:w-10"
+          className="rounded-md ml-[35%] md:ml-0 h-5 md:h-10 md:w-10 hover:scale-105"
         ></img>
         <div>
           <button
-            className={` text-white flex flex-col text-xs md:text-base font-medium md:mt-2 cursor-pointer ${
+            className={`hover:scale-105 text-white flex flex-col text-xs md:text-base font-medium md:mt-2 cursor-pointer ${
               showBtn && "focus:mt-0"
             }`}
             onClick={() => {
