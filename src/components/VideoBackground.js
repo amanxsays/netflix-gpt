@@ -9,7 +9,7 @@ const VideoBackground = ({imdb_id}) => {
     <div >
       <iframe
         className="aspect-video absolute md:top-[-9vh]"
-        src={"https://www.youtube.com/embed/"+key+"?autoplay=1&mute=1"}
+        src={"https://www.youtube.com/embed/"+key+"??autoplay=1&mute=1&origin=https://nettflixai.netlify.app"}
         referrerPolicy="strict-origin-when-cross-origin"
         title="YouTube video player"
         allow="autoplay"
