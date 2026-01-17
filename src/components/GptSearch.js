@@ -43,7 +43,7 @@ const GptSearch = () => {
           Search
         </button>
       </form>
-      {(gptMoviesLoaded && gptMoviesLoaded.length==0) ? <span className="absolute md:left-[100vh] left-[25vh] -z-10 md:mt-10 mt-20 inline-block animate-[spin_3s_linear_infinite]"><SiGrafana className="md:scale-[800%] scale-[200%]"/></span> : <GptMovies/>}
+      {(gptMoviesLoaded && gptMoviesLoaded.length===0) ? <span className="absolute md:left-[100vh] left-[25vh] -z-10 md:mt-10 mt-20 inline-block animate-[spin_3s_linear_infinite]"><SiGrafana className="md:scale-[800%] scale-[200%]"/></span> : <GptMovies/>}
     </div>
   );
 };
